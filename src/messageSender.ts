@@ -1,7 +1,7 @@
 
 import { QueueServiceClient, StorageSharedKeyCredential }   from "@azure/storage-queue";
 
-class MessageSender 
+export class MessageSender 
 {
     constructor(private queueClient:QueueServiceClient, private queueName: string)
     {
