@@ -1,0 +1,9 @@
+{
+    "storageAccountName": "test",
+    "queueName" : "", 
+    "deviceTargetDataUrl": "",
+    "startIndex": 0,
+    "fetchSize": 10,
+    "cronJobPattern": "",
+    "waitTimeInSecond": 10
+}
