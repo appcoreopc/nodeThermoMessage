@@ -1,21 +1,23 @@
 
-import { QueueServiceClient, StorageSharedKeyCredential }   from "@azure/storage-queue";
+import { QueueServiceClient, StorageSharedKeyCredential } from "@azure/storage-queue";
 
-export class MessageSender 
-{
-    constructor(private queueClient:QueueServiceClient, private queueName: string)
-    {
+export interface IMessageSender {
+
+    sendMessage(content: string): Promise<boolean>;
+}
+
+export class MessageSender implements IMessageSender {
+    constructor(private queueClient: QueueServiceClient, private queueName: string) {
 
     }
 
-    public sendMessage(content:string):boolean 
-    {
+    public async sendMessage(content: string): Promise<boolean> {
         const sendClient = this.queueClient.getQueueClient(this.queueName);
         const result = sendClient.sendMessage(content).then(() =>
             console.log("done!")
         );
 
-        return true; 
+        return true;
     }
 
 }

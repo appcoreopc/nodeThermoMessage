@@ -11,12 +11,12 @@ export class MessageSender
     public sendMessage(content:string):boolean 
     {
         const sendClient = this.queueClient.getQueueClient(this.queueName);
+
         const result = sendClient.sendMessage(content).then(() =>
-            console.log("done!")
+            console.log("result:")
         );
 
         return true; 
     }
-
 }
 
