@@ -3,13 +3,15 @@ import  nconfig  from "nconf";
 import { fileURLToPath } from "node:url";
 import { config } from "node:process";
 
-class ConfigProvider { 
+export class ConfigProvider { 
 
     async getConfig(configFilePath:string): Promise<AppConfig> {
+
         nconfig.use('file', { file : configFilePath })
         nconfig.load();
 
-        return {
+        
+        const appConfig = {
 
             storageAccountName: nconfig.get("storageAccountName"),
             queueName: nconfig.get("queueName"),
@@ -19,5 +21,9 @@ class ConfigProvider {
             cronJobPattern: nconfig.get("cronJobPattern"),
             waitTimeInSecond: nconfig.get("waitTimeInSecond")
         };
+
+        console.log(appConfig);
+
+        return appConfig;
     }
 }
