@@ -5,18 +5,23 @@ import { setLogLevel } from "@azure/logger";
 import schedule from "node-schedule";
 import { DeviceManager } from "./provider/deviceManager";
 import axios from "axios";
+import { ConfigProvider } from "./provider/configProvider";
 
 //setLogLevel("info");
 
 export async function main() {
 
-    const job = schedule.scheduleJob('5 * * * * *', async () => {
+    //const job = schedule.scheduleJob('5 * * * * *', async () => {
 
         const account = "thermoappsadev";
         const credential = new DefaultAzureCredential();
         const queueServiceClient = new QueueServiceClient(`https://${account}.queue.core.windows.net`,
             credential
         );
+
+
+        const configProvider = new ConfigProvider().getConfig("../src/config.dev.json");
+        
 
         const queueName = "testmessage";
         const messageProvider = new MessageSender(queueServiceClient, queueName);
@@ -38,6 +43,6 @@ export async function main() {
         }
 
         console.log('Scheduler stops')
-    });
+    //});
 }
 
