@@ -10,9 +10,9 @@ export class DeviceManager {
 
         const deviceList = this.deviceList;
 
-        for (const key in deviceList) {
+        for (const device of deviceList) {
 
-            const thermoData = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
+            const thermoData = await axios.get(device.DeviceIPAddress);
 
             if (thermoData) {
                 const data = thermoData.data as User;

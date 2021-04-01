@@ -27,23 +27,11 @@ export async function main() {
         const messageProvider = new MessageSender(queueServiceClient, queueName);
 
         const deviceManager = new
-            DeviceManager([{ DeviceId: "1", DeviceIPAddress: "100", StartIndex: 1, FetchSize: 2 }], messageProvider);
-        
+            DeviceManager([{ DeviceId: "1", DeviceIPAddress: "https://jsonplaceholder.typicode.com/todos/1", StartIndex: 1, FetchSize: 2 }], messageProvider);
         
         await deviceManager.getDataFromDevice();
 
-        const thermoData = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
-
-        // if (thermoData) {
-
-        //     const data = thermoData.data as User;
-        //     console.log(data.userId);
-
-        //     const queueName = "testmessage";
-        //     const messageProvider = new MessageSender(queueServiceClient, queueName);
-        //     await messageProvider.sendMessage(`testing testing ${new Date().toLocaleString()}`);
-        // }
-
+        
         console.log('Scheduler stops')
     //});
 }
