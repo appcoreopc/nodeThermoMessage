@@ -3,10 +3,10 @@ import { IMessageSender } from "./messageSender";
 
 export class DeviceManager {
 
-    constructor(private deviceList: DeviceInfo[], private sender: IMessageSender) {
+    constructor(private deviceList: DeviceInfo[], private messageProvider: IMessageSender) {
     }
 
-    async getDataFromDevice() {
+    async getDataFromDevice(): Promise<DeviceDataType> {
 
         const deviceList = this.deviceList;
 
@@ -17,6 +17,9 @@ export class DeviceManager {
             if (thermoData) {
                 const data = thermoData.data as User;
                 console.log(data.userId);
+
+                await this.messageProvider.sendMessage(`testing testing ${new Date().toLocaleString()}`);
+                console.log("sent!!");
             }
         }
     }

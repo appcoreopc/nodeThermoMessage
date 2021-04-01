@@ -10,7 +10,6 @@ export class ConfigProvider {
         nconfig.use('file', { file : configFilePath })
         nconfig.load();
 
-        
         const appConfig = {
 
             storageAccountName: nconfig.get("storageAccountName"),
