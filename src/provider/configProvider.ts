@@ -22,7 +22,6 @@ export class ConfigProvider {
         };
 
         console.log(appConfig);
-
         return appConfig;
     }
 }
