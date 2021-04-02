@@ -1,5 +1,5 @@
-import axios from "axios";
 import { IMessageSender } from "./messageSender";
+import axios from "axios";
 
 export class DeviceManager {
 
