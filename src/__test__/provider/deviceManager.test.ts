@@ -7,16 +7,16 @@ jest.mock("../../provider/messageSender");
 
 describe("Device manager test", () => {
   
-  test("it should filter by a search term (link)", async () => {
+  test("given device return data, message gets send", async () => {
  
     const mocked = MessageSender as jest.MockedClass<typeof MessageSender>;
     
-    const mockedSender = jest.fn();
-    mocked.prototype.sendMessage = mockedSender;
-    mockedSender.mockResolvedValue(Promise.resolve(true));
+    const mockSendFunction = jest.fn();
+    mocked.prototype.sendMessage = mockSendFunction;
+    mockSendFunction.mockResolvedValue(Promise.resolve(true));
 
     const messageSenderInstance =  mocked.prototype;
-    const users = [{name: 'Bob'}];
+    const users = [{id: 'Bob'}];
 
     (axios.get as jest.Mock).mockImplementation(() => users);
 
@@ -25,8 +25,8 @@ describe("Device manager test", () => {
       FetchSize: 2 }], messageSenderInstance);
 
       await target.getDataFromDevice();
-      expect(mockedSender).toBeCalled();
-      expect(mockedSender).toBeCalledTimes(1);
+
+      expect(mockSendFunction).toHaveBeenCalled();
 
   });
 });
