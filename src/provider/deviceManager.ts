@@ -6,7 +6,7 @@ export class DeviceManager {
     constructor(private deviceList: DeviceInfo[], private messageProvider: IMessageSender) {
     }
 
-    async getDataFromDevice(): Promise<DeviceDataType> {
+    async getDataFromDevice() {
 
         const deviceList = this.deviceList;
 
@@ -16,9 +16,9 @@ export class DeviceManager {
 
             if (thermoData) {
                 const data = thermoData.data as User;
-                console.log(data.userId);
+                //console.log(data.userId);
 
-                await this.messageProvider.sendMessage(`testing testing ${new Date().toLocaleString()}`);
+                const result = await this.messageProvider.sendMessage(`testing testing ${new Date().toLocaleString()}`);
                 console.log("sent!!");
             }
         }
