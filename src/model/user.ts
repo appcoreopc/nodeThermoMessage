@@ -1,10 +1,14 @@
 interface User {
 
-    userId: number;
+    UserId: number;
 
-    Id: number;
+    RecordId: number;
 
     Title: string;
+
+    Image: string;
+
+    Temperature: number;
 
     Completed: boolean;
 

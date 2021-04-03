@@ -15,11 +15,12 @@ export class DeviceManager {
             const thermoData = await axios.get(device.DeviceIPAddress);
 
             if (thermoData) {
-                const data = thermoData.data as User;
-                //console.log(data.userId);
 
-                const result = await this.messageProvider.sendMessage(`testing testing ${new Date().toLocaleString()}`);
-                console.log("sent!!");
+                const data = thermoData.data as User;
+
+                const result = await this.messageProvider.sendMessage(JSON.stringify(data));
+                
+                console.log(result);
             }
         }
     }

@@ -21,7 +21,6 @@ export class ConfigProvider {
             waitTimeInSecond: nconfig.get("waitTimeInSecond")
         };
 
-        console.log(appConfig);
         return appConfig;
     }
 }
