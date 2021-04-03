@@ -1,7 +1,5 @@
 import { AppConfig } from "../model/appConfig";
 import  nconfig  from "nconf";
-import { fileURLToPath } from "node:url";
-import { config } from "node:process";
 
 export class ConfigProvider { 
 
@@ -20,7 +18,15 @@ export class ConfigProvider {
             cronJobPattern: nconfig.get("cronJobPattern"),
             waitTimeInSecond: nconfig.get("waitTimeInSecond")
         };
-
+       
         return appConfig;
+    }
+    
+    
+    async saveConfig(settings : AppConfig)
+    {
+        nconfig.set("startIndex", settings.startIndex)
+        nconfig.set("fetchSize", settings.fetchSize);
+        nconfig.save(settings);
     }
 }

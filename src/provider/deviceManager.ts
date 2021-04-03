@@ -13,6 +13,7 @@ export class DeviceManager {
         for (const device of deviceList) {
 
             const thermoData = await axios.get(device.DeviceIPAddress);
+            console.log(thermoData);
 
             if (thermoData) {
 

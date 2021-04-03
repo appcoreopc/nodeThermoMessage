@@ -1,9 +1,10 @@
 {
-    "storageAccountName": "test",
-    "queueName" : "testmessage", 
-    "deviceTargetDataUrl": "",
-    "startIndex": 0,
-    "fetchSize": 10,
-    "cronJobPattern": "5 * * * * *",
-    "waitTimeInSecond": 10
+  "storageAccountName": "test",
+  "queueName": "testmessage",
+  "deviceTargetDataUrl": "https://jsonplaceholder.typicode.com/todos/1",
+  "startIndex": 1003,
+  "fetchSize": 10,
+  "cronJobPattern": "5 * * * * *",
+  "waitTimeInSecond": 10,
+  "startIndx": 1001
 }

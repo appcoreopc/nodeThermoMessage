@@ -17,21 +17,30 @@ export async function main() {
     );
 
     const configFileName = "./src/config." + process.env.nodeEnv + ".json";
-    console.log(configFileName);
-    const settings = new ConfigProvider().getConfig(configFileName);
-        
-    const queueName = (await settings).queueName;
+    const configProvider = new ConfigProvider();
+    const settings = await configProvider.getConfig(configFileName);
+    
+    console.log(settings);
+    
+    const queueName = settings.queueName;
     const messageProvider = new MessageSender(queueServiceClient, queueName);
-    console.log(queueName);
     
     const deviceManager = new
-    DeviceManager([{ DeviceId: "1", DeviceIPAddress: "https://jsonplaceholder.typicode.com/todos/1", StartIndex: 1, FetchSize: 2 }], messageProvider);
+    DeviceManager([{ DeviceId: "1", DeviceIPAddress: settings.deviceTargetDataUrl, StartIndex: settings.startIndex, FetchSize: settings.fetchSize }], messageProvider);
 
-    const job = schedule.scheduleJob('5 * * * * *', async () => {
+    const job = schedule.scheduleJob(settings.cronJobPattern, async () => {
+        
         await deviceManager.getDataFromDevice();
+        
         console.log(`Application run count : ${appRunCount}`);
+        
         appRunCount++;
-    });
 
+        settings.startIndex++;
+
+        // save the settings // 
+        configProvider.saveConfig(settings);
+   
+    });
 }
 
